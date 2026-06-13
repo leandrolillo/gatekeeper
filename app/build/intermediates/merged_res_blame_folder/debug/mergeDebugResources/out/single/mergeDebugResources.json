@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "com.gatekeeper.app-debug-62:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.gatekeeper.app-main-64:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.gatekeeper.app-debug-62:/mipmap-hdpi_ic_launcher_round.xml.flat",
+        "source": "com.gatekeeper.app-main-64:/mipmap-hdpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.gatekeeper.app-debug-62:/drawable_ic_gate.xml.flat",
+        "source": "com.gatekeeper.app-main-64:/drawable/ic_gate.xml"
+    },
+    {
+        "merged": "com.gatekeeper.app-debug-62:/mipmap-hdpi_ic_launcher.xml.flat",
+        "source": "com.gatekeeper.app-main-64:/mipmap-hdpi/ic_launcher.xml"
+    }
+]
