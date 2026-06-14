@@ -18,6 +18,7 @@ import com.gatekeeper.data.repository.EventRepository
 import com.gatekeeper.data.repository.GateLogRepository
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import java.util.Calendar
 import javax.inject.Inject
@@ -49,6 +50,7 @@ class GateNotificationService : NotificationListenerService() {
         super.onCreate()
         startForegroundWithNotification()
         createAlertChannel()
+        observeMonitoringState()
         Log.i(TAG, "GateNotificationService started")
     }
 
@@ -153,6 +155,20 @@ class GateNotificationService : NotificationListenerService() {
             }
             startActivity(callIntent)
             Log.i(TAG, "Calling gate: $gatePhone")
+        }
+    }
+
+    private fun observeMonitoringState() {
+        serviceScope.launch {
+            appPreferences.monitoringEnabled.collectLatest { enabled ->
+                if (enabled) {
+                    startForegroundWithNotification()
+                } else {
+                    @Suppress("DEPRECATION")
+                    stopForeground(true)
+                    Log.i(TAG, "Monitoring disabled — foreground notification removed")
+                }
+            }
         }
     }
 
